@@ -31,4 +31,4 @@ $(_include):
 
 mkpm-publish:
 	git tag v$(version)
-	git push origin v$(version)
+	git push -f origin v$(version)
