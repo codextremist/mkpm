@@ -12,6 +12,8 @@ endif
 include mkpm
 endif
 
+$(eval mkpm_pkg_$(subst $(newline),$(newline)mkpm_pkg_,$(mkpm_pkg_manifest)))
+
 ifneq ($(filter-out $(mkpm_included_pkgs),$(mkpm_include_pkgs)),)
 mkpm_included_pkgs := $(sort $(mkpm_included_pkgs) $(mkpm_include_pkgs))
 include $(mkpm_include_pkgs)

@@ -12,7 +12,7 @@ ifndef mkpm_pkg_manifest
 $(error Missing mkpkg file)
 endif
 
-$(eval mkpm_pkg_$(subst $(newline),$(newline)mkpm_pkg_,$(mkpm_pkg_manifest)))
+#$(eval mkpm_pkg_$(subst $(newline),$(newline)mkpm_pkg_,$(mkpm_pkg_manifest)))
 
 mkpm_pkg_main ?= Makefile
 mkpm_pkgs_dir ?= .mkpkgs
