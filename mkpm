@@ -1,10 +1,5 @@
 mkpm_pkg_dir := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 
-include $(mkpm_pkg_dir)/mkpkg
-$(foreach pkg,$(mkpm_pkg_dependencies),$(eval mkpm_pkg__$(call get-pkg-name,$(pkg))_scheme=$(call get-pkg-scheme,$(pkg))))
-$(foreach pkg,$(mkpm_pkg_dependencies),$(eval mkpm_pkg__$(call get-pkg-name,$(pkg))_uri=$(call get-pkg-uri,$(pkg))))
-$(foreach pkg,$(mkpm_pkg_dependencies),$(eval mkpm_pkg__$(call get-pkg-name,$(pkg))_version=$(call get-pkg-version,$(pkg))))
-
 ifndef mkpm_included
 ifndef MKPM_DIR
 mkpm: 
@@ -15,6 +10,11 @@ mkpm: $(MKPM_DIR)
 endif
 include mkpm
 endif
+
+include $(mkpm_pkg_dir)/mkpkg
+$(foreach pkg,$(mkpm_pkg_dependencies),$(eval mkpm_pkg__$(call get-pkg-name,$(pkg))_scheme=$(call get-pkg-scheme,$(pkg))))
+$(foreach pkg,$(mkpm_pkg_dependencies),$(eval mkpm_pkg__$(call get-pkg-name,$(pkg))_uri=$(call get-pkg-uri,$(pkg))))
+$(foreach pkg,$(mkpm_pkg_dependencies),$(eval mkpm_pkg__$(call get-pkg-name,$(pkg))_version=$(call get-pkg-version,$(pkg))))
 
 ifneq ($(filter-out $(mkpm_included_pkgs),$(mkpm_include_pkgs)),)
 mkpm_included_pkgs := $(sort $(mkpm_included_pkgs) $(mkpm_include_pkgs))
