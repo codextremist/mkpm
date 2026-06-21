@@ -1,5 +1,6 @@
 ### mkpm bootstrap
 mkpm_pkg_dir := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+include $(mkpm_pkg_dir)/mkpkg
 
 ifndef mkpm_included
 ifndef MKPM_DIR
@@ -12,12 +13,14 @@ endif
 include mkpm
 endif
 
-$(eval mkpm_pkg_$(subst $(newline),$(newline)mkpm_pkg_,$(mkpm_pkg_manifest)))
+$(foreach pkg,$(mkpm_pkg_dependencies),$(eval mkpm_pkg__$(call get-pkg-name,$(pkg))=$(call get-pkg-scheme,$(pkg))))
+$(foreach pkg,$(mkpm_pkg_dependencies),$(eval mkpm_pkg__$(call get-pkg-name,$(pkg))=$(call get-pkg-uri,$(pkg))))
+$(foreach pkg,$(mkpm_pkg_dependencies),$(eval mkpm_pkg__$(call get-pkg-name,$(pkg))=$(call get-pkg-version,$(pkg))))
 
 ifneq ($(filter-out $(mkpm_included_pkgs),$(mkpm_include_pkgs)),)
 mkpm_included_pkgs := $(sort $(mkpm_included_pkgs) $(mkpm_include_pkgs))
 include $(mkpm_include_pkgs)
 endif
 
-mkpm_bootstraped := true
+mkpm_bootstrap := true
 ### /mkpm bootstrap

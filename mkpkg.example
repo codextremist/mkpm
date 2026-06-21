@@ -1,5 +1,5 @@
 # mkpkg is a regular makefile
-name=mkpm-<package-name>
-version=<version:-latest>
-main=<main file:-Makefile>
-dependencies=file://<absolute-path> <remote-package>@<version>
+mkpm_pkg_name=mkpm-<package-name>
+mkpm_pkg_version=<version:-latest>
+mkpm_pkg_main=<main file:-Makefile>
+mkpm_pkg_dependencies=file://<absolute-path> <remote-package>@<version>
