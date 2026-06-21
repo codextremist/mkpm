@@ -52,4 +52,4 @@ $(mkpm_pkgs_dir)/%: | mkpkg
 mkpm-remove-packages: ## Remove all mkpm packages
 	rm -rf $(mkpm_pkgs_dir)
 
-mkpm_common_included := true
+mkpm_included := true
