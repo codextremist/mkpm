@@ -1,4 +1,3 @@
-## mkpm bootstrap
 mkpm_pkg_dir := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 
 include $(mkpm_pkg_dir)/mkpkg
@@ -21,4 +20,3 @@ ifneq ($(filter-out $(mkpm_included_pkgs),$(mkpm_include_pkgs)),)
 mkpm_included_pkgs := $(sort $(mkpm_included_pkgs) $(mkpm_include_pkgs))
 include $(mkpm_include_pkgs)
 endif
-## /mkpm bootstrap
